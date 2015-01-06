@@ -70,6 +70,8 @@ var defaultCorsHeaders = {
   "access-control-allow-headers": "content-type, accept",
   "access-control-max-age": 10 // Seconds.
 };
+console.log("hello!")
+// defines an exports object
 module.export = {};
 // store the requesthandler function as a property of module.export, which will be read in require
 module.export[requestHandler] = requestHandler;
