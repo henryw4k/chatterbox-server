@@ -1,5 +1,17 @@
 /* Import node's http module: */
+//notes from HR help desk:
+// function require(relativeUrl) {
+//   // find file from relativeUrl
+//   // Execute Code from File from relative URL
+//   // if at any point module.exports is defined or exports.xxxx is defined
+//   // then return that as the return value;
+// }
 var http = require("http");
+// equivalent to a script tag to include the request-handler.js
+var handleRequest = require('./request-handler.js').requestHandler;
+//require first executes code in the passed in js files. Secondly, it
+//finds model.exports
+
 
 
 // Every server needs to listen on a port with a unique number. The
