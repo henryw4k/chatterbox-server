@@ -14,7 +14,7 @@ this file and include it in basic-server.js so that it actually works.
 //set a global database object
 var createdAt = 0;
 var dataBase = {
-  results: []
+  results: [{a:1}, {b:2}]
 };
 exports.requestHandler = function(request, response) {
 // These headers will allow Cross-Origin Resource Sharing (CORS).
@@ -50,7 +50,7 @@ var defaultCorsHeaders = {
     response.end();
   }
 
-  if (request.method === 'GET'){
+  if(request.method === 'GET'){
     // .writeHead() writes to the request line and headers of the response,
     // which includes the status and all headers.
     response.writeHead(200, headers);
@@ -58,7 +58,7 @@ var defaultCorsHeaders = {
     response.end(JSON.stringify(dataBase));
   }
 
-  if (request.method === 'POST'){
+  if(request.method === 'POST'){
     //set data in dataBase
     var data = '';
     request.on('data', function(chunk) {
@@ -80,7 +80,7 @@ var defaultCorsHeaders = {
     // which includes the status and all headers.
     response.writeHead(201, headers);
     response.end(JSON.stringify(dataBase));
-  }// POST
+}
 //console.log('dataBase', dataBase);
 
   // Do some basic logging.
