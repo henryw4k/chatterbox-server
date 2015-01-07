@@ -12,6 +12,7 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
 //set a global database object
+var createdAt = 0;
 var dataBase = {
   results: []
 };
@@ -49,7 +50,7 @@ var defaultCorsHeaders = {
     response.end();
   }
 
-  if(request.method === 'GET'){
+  if (request.method === 'GET'){
     // .writeHead() writes to the request line and headers of the response,
     // which includes the status and all headers.
     response.writeHead(200, headers);
@@ -57,7 +58,7 @@ var defaultCorsHeaders = {
     response.end(JSON.stringify(dataBase));
   }
 
-  if(request.method === 'POST'){
+  if (request.method === 'POST'){
     //set data in dataBase
     var data = '';
     request.on('data', function(chunk) {
@@ -67,20 +68,20 @@ var defaultCorsHeaders = {
     request.on('end', function() {
       var objectID = Math.random().toString().slice(0,7);
       //if time permits, generate time stamp instead of random number
-      var createdAt = Math.random().toString().slice(0,7);
-      console.log('data', data)
+      //console.log('data', data)
         var parsedData = JSON.parse(data);
-        parsedData[objectID] = objectID;
-        parsedData[createdAt] = createdAt;
-        dataBase.results.push(JSON.stringify(data));
+        parsedData['objectID'] = objectID;
+        parsedData['createdAt'] = ++createdAt;
+        console.log('parsedData', parsedData);
+        dataBase.results.push(data);
     })
     //create an 'on' event that listens for a data request. Once data is received,
     // .writeHead() writes to the request line and headers of the response,
     // which includes the status and all headers.
     response.writeHead(201, headers);
-    response.end('sent!');
-}
-console.log('dataBase', dataBase);
+    response.end(JSON.stringify(dataBase));
+  }// POST
+//console.log('dataBase', dataBase);
 
   // Do some basic logging.
   //
