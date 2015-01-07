@@ -5,7 +5,8 @@ $(function() {
   app = {
 //TODO: The current 'addFriend' function just adds the class 'friend'
 //to all messages sent by the user
-    server: 'https://api.parse.com/1/classes/chatterbox/',
+    //server: 'https://api.parse.com/1/classes/chatterbox/',
+    server:'http://127.0.0.1:3000/classes/messages',
     username: 'anonymous',
     roomname: 'lobby',
     lastMessageId: 0,
@@ -82,6 +83,7 @@ $(function() {
             // Store the ID of the most recent message
             app.lastMessageId = mostRecentMessage.objectId;
           }
+
         },
         error: function(data) {
           console.error('chatterbox: Failed to fetch messages');

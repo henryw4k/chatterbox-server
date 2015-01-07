@@ -8,7 +8,7 @@
 // }
 var http = require("http");
 // equivalent to a script tag to include the request-handler.js
-var handleRequest = require('./request-handler.js').requestHandler;
+var handleRequest = require('./request-handler.js');
 //require first executes code in the passed in js files. Secondly, it
 //finds model.exports
 
@@ -34,7 +34,7 @@ var ip = "127.0.0.1";
 // incoming requests.
 //
 // After creating the server, we will tell it to listen on the given port and IP. */
-var server = http.createServer(handleRequest);
+var server = http.createServer(handleRequest.requestHandler);
 console.log("Listening on http://" + ip + ":" + port);
 server.listen(port, ip);
 
